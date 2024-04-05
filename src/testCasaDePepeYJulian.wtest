@@ -1,0 +1,45 @@
+import casa.*
+import estrategiasDeAhorro.*
+import cuentasBancarias.*
+
+
+test "La casa" {
+
+	casaDePepeYJulian.romperPorValor(1000)
+	assert.that(casaDePepeYJulian.tieneViveresSuficientes())
+	assert.that(casaDePepeYJulian.tieneQueHacerReparaciones())
+	assert.notThat(casaDePepeYJulian.estaEnOrden())
+
+}
+
+test "Cuentas Bancarias" {
+	
+	cuentaCombinada.cuentaPrimaria(cuentaConGastos)
+	cuentaCombinada.cuentaPrimaria().costoPorOperacion(50)
+	cuentaCorriente.depositar(500)
+	cuentaCombinada.cuentaSecundaria(cuentaCorriente)
+	
+	
+	cuentaCombinada.depositar(100)
+	cuentaCombinada.extraer(200)
+	
+	assert.equals(50,cuentaConGastos.saldo())
+	assert.equals(300,cuentaCorriente.saldo())
+	assert.equals(350,cuentaCombinada.saldo())
+	
+}
+
+test "Manteniendo la casa" {
+	
+	casaDePepeYJulian.romperPorValor(100)
+	casaDePepeYJulian.establecerCuenta(cuentaCorriente)
+	casaDePepeYJulian.establecerEstrategiaDeAhorro(full)
+	casaDePepeYJulian.cuenta().depositar(1000)
+	
+	casaDePepeYJulian.aplicarEstrategiaDeAhorro()
+	
+	assert.equals(90,casaDePepeYJulian.viveres())
+	assert.equals(100,casaDePepeYJulian.costoDeReparaciones())
+	assert.equals(800,casaDePepeYJulian.cuenta().saldo())
+	
+}
