@@ -16,6 +16,10 @@ object cuentaCorriente {
 	method saldo() {
 		return saldo
 	}
+	
+	method tieneSaldoSuficiente(gastoACubrir){
+		return saldo >= gastoACubrir
+	}
 
 }
 
@@ -34,6 +38,10 @@ object cuentaConGastos {
 
 	method saldo() {
 		return saldo
+	}
+	
+	method tieneSaldoSuficiente(gastoACubrir){
+		return saldo >= gastoACubrir
 	}
 
 }
@@ -55,6 +63,10 @@ object cuentaCombinada {
 
 	method saldo() {
 		return cuentaPrimaria.saldo() + cuentaSecundaria.saldo()
+	}
+	
+	method tieneSaldoSuficiente(gastoACubrir){
+		return self.saldo() >= gastoACubrir
 	}
 
 }

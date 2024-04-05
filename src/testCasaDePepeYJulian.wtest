@@ -12,7 +12,7 @@ test "La casa" {
 
 }
 
-test "Cuentas Bancarias"{
+test "Cuentas Bancarias" {
 	
 	cuentaCombinada.cuentaPrimaria(cuentaConGastos)
 	cuentaCombinada.cuentaPrimaria().costoPorOperacion(50)
@@ -27,6 +27,19 @@ test "Cuentas Bancarias"{
 	assert.equals(300,cuentaCorriente.saldo())
 	assert.equals(350,cuentaCombinada.saldo())
 	
+}
+
+test "Manteniendo la casa" {
 	
+	casaDePepeYJulian.romperPorValor(100)
+	casaDePepeYJulian.establecerCuenta(cuentaCorriente)
+	casaDePepeYJulian.establecerEstrategiaDeAhorro(full)
+	casaDePepeYJulian.cuenta().depositar(1000)
+	
+	casaDePepeYJulian.aplicarEstrategiaDeAhorro()
+	
+	assert.equals(90,casaDePepeYJulian.viveres())
+	assert.equals(100,casaDePepeYJulian.costoDeReparaciones())
+	assert.equals(800,casaDePepeYJulian.cuenta().saldo())
 	
 }
